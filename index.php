@@ -1,6 +1,6 @@
 <?php include_once "includes/header.php"; ?>
 <div>
-	<div class="jumbotron text-center index-jumbotron" style="margin-bottom:0">
+	<div class="jumbotron text-center index-jumbotron" style="margin-bottom:0; ">
 		<div>
 			<h1>WELCOME TO PARK EASY</h1>
 		</div>
@@ -13,6 +13,7 @@
 		<div>
 			<button type="button" class="btn btn-info">SIGN UP NOW</button>
 		</div>
+		<br>
 	</div>
 	<hr style="margin:0">
 

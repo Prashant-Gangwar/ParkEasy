@@ -10,6 +10,8 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- my javascript file - common.js -->
+    <script src="js/common.js"></script>
 	<!-- CSS STYLE link -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<!-- Google font link -->
@@ -176,8 +178,9 @@
                 <div class="row">
                     <h1 class="main-heading" style="text-decoration: underline">REGISTER</h1>
                 </div>
+                <div class="vertical-space-10"></div>
                 <span id="registerErrorText" class="text-red"></span>
-                <div class="vertical-space-30"></div>
+                <div class="vertical-space-10"></div>
 
                 <div class="form-horizontal">
                     <form class="form-horizontal" id="register-form" method="post" action="database/login_register.php">
@@ -275,6 +278,8 @@
         //Register Modal Display from Register Button
         $("#register-button").click(function() {
             $("#register-box").modal("show");
+            document.getElementById("register-form").reset();
+            $("#registerErrorText").html("");
         });
 
         // Forget Password Modal Display from Login Modal
@@ -291,7 +296,7 @@
 
 	});
 
-    //To bind register button
+    //Code for registeration
     $("#register-box").submit(function (event){
 
         var fname = $('#fname').val();
@@ -303,18 +308,150 @@
         var vehicle_type = $('#vehicle_type').val();
         var vehicle_no = $('#vehicle_no').val();
 
-        $.ajax({
+        event.preventDefault();
+
+        if(fname == '' || lname == '' || mobile == '' || email_id == '' || password == '' || cpassword == '' || vehicle_type == '' || vehicle_no == '' )
+        {
+            $("#registerErrorText").html("Please fill all the fields");
+            $("#registerErrorText").show();
+        }
+        else if(fname.length>25)
+        {
+            $("#registerErrorText").html("First name cannot be more than 25 characters.");
+            $("#registerErrorText").show();
+        }
+        else if(fname=="")
+        {          
+            $("#registerErrorText").html("Enter yoour first name.");
+            $("#registerErrorText").show();
+        }
+        else if(lname.length>25)
+        {
+            $("#registerErrorText").html("Last name cannot be more than 25 characters.");
+            $("#registerErrorText").show();
+        }
+        else if(fname=="")
+        {          
+            $("#registerErrorText").html("Enter your last name.");
+            $("#registerErrorText").show();
+        }
+        else if(check_name(fname) == "false")
+        {
+            $("#registerErrorText").html("Invalid First name! Only Alphabets are allowed.");
+            $("#registerErrorText").show();
+        }
+        else if(check_name(lname) == "false")
+        {
+            $("#registerErrorText").html("Invalid Last name! Only Alphabets are allowed");
+            $("#registerErrorText").show();
+        }
+        else if(mobile=="")
+        {
+            $("#registerErrorText").html("Enter Mobile number.");
+            $("#registerErrorText").show();
+        }
+        else if(check_inp(mobile)=="false")
+        {
+            $("#registerErrorText").html("Invalid Mobile number. Enter 10 digit mobile no.");
+            $("#registerErrorText").show();
+        }
+        
+        else if(check_space(mobile)=="false")
+        {
+            $("#registerErrorText").html("Invalid Mobile Number.");
+            $("#registerErrorText").show();
+        }
+
+        else if(mobile.length>10 || mobile.length < 10)
+        {
+            $("#registerErrorText").html("Enter valid 10 digit Mobile Number.");
+            $("#registerErrorText").show();
+        }
+        
+        else if(check_start_zero(mobile)=="true")
+        {
+            $("#registerErrorText").html("Starting digit of Mobile number can't be '0'.");
+            $("#registerErrorText").show();
+        }
+        else if(email_id=="")
+        {
+            $("#registerErrorText").html("Enter your Email id.");
+            $("#registerErrorText").show();
+        }
+        else if(check_email(email_id)=="false")
+        {
+            $("#registerErrorText").html("Invalid Email id! Enter your valid Email id.");
+            $("#registerErrorText").show();
+        } 
+        else if(password=="")
+        {
+            $("#registerErrorText").html("Enter your password (max length 16 digits)");
+            $("#registerErrorText").show();
+        }
+        else if(cpassword=="")
+        {
+            $("#registerErrorText").html("Enter Confirm Password.");
+            $("#registerErrorText").show();
+        }
+        else if(password != cpassword)
+        {
+            $("#registerErrorText").html("Password mismatch.");
+        }
+        else if(password.length <= 16 && password.length >= 6)
+        {
+            $("#registerErrorText").html("Password length must be between 6 to 16 characters).");
+            $("#registerErrorText").show();
+        }
+        else
+        {
+            $.ajax({
                 type: "POST",
                 url: 'database/login_register.php',
-                data: { 'type': 'register', 'fname': fname, 'lname': lname, 'mobile': mobile, 'email_id': email_id, 'password': password, 'vehicle_type': vehicle_type, 'vehicle_no': vehicle_no },
+                data: { 'type': 'register', 'fname': fname, 'lname': lname, 'mobile': mobile, 'email_id': email_id, 'password': password, 'vehicle_type'    : vehicle_type, 'vehicle_no': vehicle_no },
                 success: function(response){
                         
-                        alert(response);
+                        //alert(response);
+                        if(response == "email_error")
+                        {
+                            $("#registerErrorText").html("Email id already in use!");
+                            $("#registerErrorText").show();
+                        }
+                        else if(response == "mobile_error")
+                        {
+                            $("#registerErrorText").html("Email id already in use!");
+                            $("#registerErrorText").show();
+                        }
+                        else 
+                        {
+                            alert(response);
+                            $("#register-box").hide();
+                            $("#register-form").reset();
+                            $("#registerErrorText").html("");
+                        }
                 }
-        });
+            });
 
-        event.preventDefault();
-        return false;   
+            event.preventDefault();
+            return false;    
+        }
+
+           
     });
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -131,7 +131,6 @@
 					<i class="fa fa-times" aria-hidden="true" style="font-size: 20px; padding-right: 3px;"></i> Close
 				</button>
 			</div>
-
 		</div>
 	</div>
 </div>
@@ -173,7 +172,7 @@
 <div class="row" style="background-color: black; font-family: 'Montserrat'; margin:0">
 	<div class="col-lg-12" style="margin-bottom: 10px ">
 		<div class="text-center" style="margin: 0px;">
-			<h1 style="background-color: #C70D0D; color: white; padding-top: 5px; margin-top: 10px; padding-bottom: 5px; font-weight: bold;  margin-bottom: 10px; border-radius: 4px;" > Hi Prashant! Welcome to CUT IT :)
+			<h1 style="background-color: #C70D0D; color: white; padding-top: 5px; margin-top: 10px; padding-bottom: 5px; font-weight: bold;  margin-bottom: 10px; border-radius: 4px;" > Hi Prashant! Welcome to ParkEasy :)
 			</h1>
 		</div>
 		<div class="col-lg-12" style="background-color: #fff; color: white; border-radius: 4px; opacity: 0.9;">

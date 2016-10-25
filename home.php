@@ -3,10 +3,10 @@
 	<div style="">
 		<!-- Maps are loaded here-->
 		<div class="col-lg-9" style="padding: 10px; margin-top: 20px;">
-			<div id="map" style="width:100%;height:80%"></div>
+			<div id="map" style="width:100%; height:80%"></div>
 		</div>
 		<!-- Right side profile details are loaded here-->
-		<div class="col-lg-3" style="margin-top: 30px; background-color: orange; margin-left: 0px;">
+		<div class="col-lg-3" style="margin-top: 30px; background-color: orange; margin-left: 0px; height: 80%">
 			<div style=" padding-top: 10px;">
 				<h1 class="text-center" style="background-color: #C70D0D; color: white; padding-top: 12px; margin-top: 5px; padding-bottom: 11px; font-weight: bold;  margin-bottom: 10px; border-radius: 4px;" > Hi Prashant! <br>Welcome <br>to <br>Park Easy :)</h1>
 			</div>
@@ -19,7 +19,6 @@
 				<label>Email: Prashantgangwar23@gmail.com</label><br>
 				<label>Vehicle No: MP 09 AB 1234</label><br>
 				<label>Mobile: 9876543210</label><br>
-				<br><br><br>
 			</div>
 		</div>
 	</div>

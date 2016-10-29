@@ -1,4 +1,8 @@
-<?php include_once 'includes/header.php' ?>
+<?php 
+	
+	include_once 'includes/header.php';
+	error_reporting(0);
+ ?>
 
 
 <!-- Edit Details Box -->
@@ -190,16 +194,16 @@
 				<div class="col-lg-12" style="color: white; display: block;">
 					<ul style="list-style: none;"><h2><b><u>Profile Details</u></b></h2>
 						<li class="jusitfied">
-							Name : <?php echo $users->name; ?> 
+							Name : Prashant Gangwar<?php //echo $users->name; ?> 
 						</li>
 						<li class="justified">
-							Email id : <?php echo $users->email; ?>
+							Email id : prashantgangwar23@gmail.com<?php //echo $users->email; ?>
 						</li>
 						<li class="justified">
-							Contact No : <?php echo $users->mobile; ?>
+							Contact No : 9213521280<?php //echo $users->mobile; ?>
 						</li>
 						<li class="justified">
-							Password : <?php echo $users->password; ?>
+							Password : ******<?php //echo $users->password; ?>
 						</li>
 					</ul>
 				</div>
@@ -212,9 +216,6 @@
 
 	<div class="container-fluid col-lg-12" style="background-color: #00A2B5; color: white; border-radius: 4px; width: 100%; margin-top: 10px; overflow: auto;">
 		  <h3 style="font-family: 'Montserratbold'">Your Recent Bookings</h3>
-		  	<ul class="nav nav-tabs nav-justified">
-			    <li class="active" id="url_tab_click"><a href="#url_tab"><h3 style="margin: 0px; color: black; font-family: 'Montserratbold'">URL</h3></a></li>
-		  	</ul>
 		  <br>
 
 		 <!-- Table for URL shortener history -->
@@ -257,12 +258,11 @@
 			        </tbody>
 			  	</table>
 		</div>
-
+		<br><br>
 	</div>
 </div>
 <hr style="margin:0;">
-
-
+<br>
 <?php include_once 'includes/footer.php'; ?>
 
 <style type="text/css">

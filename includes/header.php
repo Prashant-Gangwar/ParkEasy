@@ -27,12 +27,12 @@
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="index.php" style="color: orange"><i class="fa fa-car" aria-hidden="true"></i> Park Easy</a>
 	    </div>
-	    <ul class="nav navbar-nav">
+	    <ul class="nav navbar-nav" style="margin-bottom:0px;">
 	      <li class="active"><a href="home.php"><span class="glyphicon glyphicon-home" ></span> Home</a></li>
 	      <li><a href="about_us.php"><i class="fa fa-users" aria-hidden="true"></i> About Us</a></li>
 	      <li><a href="contact_us.php"><span class="glyphicon glyphicon-phone" ></span> Contact Us</a></li> 
 	    </ul>
-	    <ul class="nav navbar-nav navbar-right">
+	    <ul class="nav navbar-nav navbar-right" style="padding-left: 0; margin-top: 0;">
 	    	<li id="my_bookings"><a href="my_bookings.php"><span class="glyphicon glyphicon-calendar" ></span> My Bookings</a></li>
 	    	<li id="my_bookings"><a href="profile.php"><span class="glyphicon glyphicon-briefcase" ></span> Account</a></li>
 	      	<li id="register-button"><a href="#register-box"><span class="glyphicon glyphicon-user" ></span> Sign Up</a></li>
@@ -51,9 +51,9 @@
                 <div class="row">
                     <h1 class="main-heading" style="text-decoration: underline">LOGIN</h1>
                 </div>
-
+                <div class="vertical-space-10"></div>
                 <span id="loginErrorText" class="text-red"></span>
-                <div class="vertical-space-30"></div>
+                <div class="vertical-space-10"></div>
 
                 <div class="form-horizontal">
                     <form class="form-horizontal" id="login-form" method="post" action="database/login_register.php">
@@ -62,7 +62,7 @@
                             <label class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-9">
 
-                                <input type="text" class="form-control" placeholder="Email" id="email_log" name="login_email" data-pattern="^\w+\@\w+\.[a-zA-Z]{2,5}$">
+                                <input type="text" class="form-control" placeholder="Email" id="log_email_id" name="login_email" data-pattern="^\w+\@\w+\.[a-zA-Z]{2,5}$">
 
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Password</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control clearform" id="password_log" placeholder="Password" data-pattern="^.{6,32}$" name="login_pass">
+                                <input type="password" class="form-control clearform" id="log_password" placeholder="Password" data-pattern="^.{6,32}$" name="login_pass">
                                 <input type="hidden" id="type_log">
                             </div>
                         </div>
@@ -93,7 +93,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" onClick="javascript:void(0);" name="login" class="btn btn-default login">
+                                <button type="submit" onClick="javascript:void(0);" name="login" id="login" class="btn btn-default login">
                                     Sign in
                                 </button>
 
@@ -188,42 +188,42 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">First Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="fname" placeholder="Eg: Prashant" name="fname" data-pattern="^[a-zA-Z ]+$" >
+                                <input type="text" class="form-control" id="reg_fname" placeholder="Eg: Prashant" name="fname" data-pattern="^[a-zA-Z ]+$" >
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Last Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="lname" placeholder="Eg: Gangwar" name="lname" data-pattern="^[a-zA-Z ]+$" >
+                                <input type="text" class="form-control" id="reg_lname" placeholder="Eg: Gangwar" name="lname" data-pattern="^[a-zA-Z ]+$" >
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Mobile</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="mobile" placeholder="Eg: 9876543210" name="mobile" data-pattern="^[1-9]{1}[0-9]{9}$">
+                                <input type="text" class="form-control" id="reg_mobile" placeholder="Eg: 9876543210" name="mobile" data-pattern="^[1-9]{1}[0-9]{9}$">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="email_id" placeholder="Eg: abc@gmail.com" data-pattern="^\w+\@\w+\.[a-zA-Z]{2,5}$" name="email">
+                                <input type="text" class="form-control" id="reg_email_id" placeholder="Eg: abc@gmail.com" data-pattern="^\w+\@\w+\.[a-zA-Z]{2,5}$" name="email">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Password</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="password" placeholder="************"  data-pattern="^.{6,32}$" name="password">
+                                <input type="password" class="form-control" id="reg_password" placeholder="************"  data-pattern="^.{6,32}$" name="password">
                             </div>
                         </div>
 
                          <div class="form-group">
                             <label class="col-sm-3 control-label">Confirm Password</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="cpassword" placeholder="************" data-pattern="^.{6,32}$" name="cpassword" >
+                                <input type="password" class="form-control" id="reg_cpassword" placeholder="************" data-pattern="^.{6,32}$" name="cpassword" >
                             </div>
                         </div>
 
@@ -231,14 +231,14 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Vehicle Type</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="vehicle_type" placeholder="Eg: Car, Bike, etc." name="vehicle_type" data-pattern="^[a-zA-Z ]+$" >
+                                <input type="text" class="form-control" id="reg_vehicle_type" placeholder="Eg: Car, Bike, etc." name="vehicle_type" data-pattern="^[a-zA-Z ]+$" >
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Vehicle Number</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="vehicle_no" placeholder="Eg: DL 1234 HA" name="vehicle_no" data-pattern="^[1-9]{1}[0-9]{9}$">
+                                <input type="text" class="form-control" id="reg_vehicle_no" placeholder="Eg: GCJ-01-AB-1234" name="vehicle_no" data-pattern="^[1-9]{1}[0-9]{9}$">
                             </div>
                         </div>
 
@@ -273,6 +273,8 @@
         //Login Modal Display from Login Button
         $("#login-button").click(function() {
             $("#login-box").modal('show');
+            $("#loginErrorText").html("");
+            document.getElementById("login-form").reset();
         });
 
         //Register Modal Display from Register Button
@@ -294,164 +296,212 @@
             $("#register-box").modal('show');
         });
 
-	});
+    	
+        //Code for registeration - START
+        $("#register-box").submit(function (event){
 
-    //Code for registeration
-    $("#register-box").submit(function (event){
-
-        var fname = $('#fname').val();
-        var lname = $('#lname').val();
-        var mobile = $('#mobile').val();
-        var email_id = $('#email_id').val();
-        var password = $('#password').val();
-        var cpassword = $('#cpassword').val();
-        var vehicle_type = $('#vehicle_type').val();
-        var vehicle_no = $('#vehicle_no').val();
-
-        event.preventDefault();
-
-        if(fname == '' || lname == '' || mobile == '' || email_id == '' || password == '' || cpassword == '' || vehicle_type == '' || vehicle_no == '' )
-        {
-            $("#registerErrorText").html("Please fill all the fields");
-            $("#registerErrorText").show();
-        }
-        else if(fname.length>25)
-        {
-            $("#registerErrorText").html("First name cannot be more than 25 characters.");
-            $("#registerErrorText").show();
-        }
-        else if(fname=="")
-        {          
-            $("#registerErrorText").html("Enter yoour first name.");
-            $("#registerErrorText").show();
-        }
-        else if(lname.length>25)
-        {
-            $("#registerErrorText").html("Last name cannot be more than 25 characters.");
-            $("#registerErrorText").show();
-        }
-        else if(fname=="")
-        {          
-            $("#registerErrorText").html("Enter your last name.");
-            $("#registerErrorText").show();
-        }
-        else if(check_name(fname) == "false")
-        {
-            $("#registerErrorText").html("Invalid First name! Only Alphabets are allowed.");
-            $("#registerErrorText").show();
-        }
-        else if(check_name(lname) == "false")
-        {
-            $("#registerErrorText").html("Invalid Last name! Only Alphabets are allowed");
-            $("#registerErrorText").show();
-        }
-        else if(mobile=="")
-        {
-            $("#registerErrorText").html("Enter Mobile number.");
-            $("#registerErrorText").show();
-        }
-        else if(check_inp(mobile)=="false")
-        {
-            $("#registerErrorText").html("Invalid Mobile number. Enter 10 digit mobile no.");
-            $("#registerErrorText").show();
-        }
-        
-        else if(check_space(mobile)=="false")
-        {
-            $("#registerErrorText").html("Invalid Mobile Number.");
-            $("#registerErrorText").show();
-        }
-
-        else if(mobile.length>10 || mobile.length < 10)
-        {
-            $("#registerErrorText").html("Enter valid 10 digit Mobile Number.");
-            $("#registerErrorText").show();
-        }
-        
-        else if(check_start_zero(mobile)=="true")
-        {
-            $("#registerErrorText").html("Starting digit of Mobile number can't be '0'.");
-            $("#registerErrorText").show();
-        }
-        else if(email_id=="")
-        {
-            $("#registerErrorText").html("Enter your Email id.");
-            $("#registerErrorText").show();
-        }
-        else if(check_email(email_id)=="false")
-        {
-            $("#registerErrorText").html("Invalid Email id! Enter your valid Email id.");
-            $("#registerErrorText").show();
-        } 
-        else if(password=="")
-        {
-            $("#registerErrorText").html("Enter your password (max length 16 digits)");
-            $("#registerErrorText").show();
-        }
-        else if(cpassword=="")
-        {
-            $("#registerErrorText").html("Enter Confirm Password.");
-            $("#registerErrorText").show();
-        }
-        else if(password != cpassword)
-        {
-            $("#registerErrorText").html("Password mismatch.");
-        }
-        else if(password.length <= 16 && password.length >= 6)
-        {
-            $("#registerErrorText").html("Password length must be between 6 to 16 characters).");
-            $("#registerErrorText").show();
-        }
-        else
-        {
-            $.ajax({
-                type: "POST",
-                url: 'database/login_register.php',
-                data: { 'type': 'register', 'fname': fname, 'lname': lname, 'mobile': mobile, 'email_id': email_id, 'password': password, 'vehicle_type'    : vehicle_type, 'vehicle_no': vehicle_no },
-                success: function(response){
-                        
-                        //alert(response);
-                        if(response == "email_error")
-                        {
-                            $("#registerErrorText").html("Email id already in use!");
-                            $("#registerErrorText").show();
-                        }
-                        else if(response == "mobile_error")
-                        {
-                            $("#registerErrorText").html("Email id already in use!");
-                            $("#registerErrorText").show();
-                        }
-                        else 
-                        {
-                            alert(response);
-                            $("#register-box").hide();
-                            $("#register-form").reset();
-                            $("#registerErrorText").html("");
-                        }
-                }
-            });
+            var fname = $('#reg_fname').val();
+            var lname = $('#reg_lname').val();
+            var mobile = $('#reg_mobile').val();
+            var email_id = $('#reg_email_id').val();
+            var password = $('#reg_password').val();
+            var cpassword = $('#reg_cpassword').val();
+            var vehicle_type = $('#reg_vehicle_type').val();
+            var vehicle_no = $('#reg_vehicle_no').val();
 
             event.preventDefault();
-            return false;    
-        }
 
-           
+            if(fname == '' || lname == '' || mobile == '' || email_id == '' || password == '' || cpassword == '' || vehicle_type == '' || vehicle_no == '' )
+            {
+                $("#registerErrorText").html("Please fill all the fields");
+                $("#registerErrorText").show();
+            }
+            else if(fname.length>25)
+            {
+                $("#registerErrorText").html("First name cannot be more than 25 characters.");
+                $("#registerErrorText").show();
+            }
+            else if(fname=="")
+            {          
+                $("#registerErrorText").html("Enter your first name.");
+                $("#registerErrorText").show();
+            }
+            else if(lname.length>25)
+            {
+                $("#registerErrorText").html("Last name cannot be more than 25 characters.");
+                $("#registerErrorText").show();
+            }
+            else if(fname=="")
+            {          
+                $("#registerErrorText").html("Enter your last name.");
+                $("#registerErrorText").show();
+            }
+            else if(check_name(fname) == "false")
+            {
+                $("#registerErrorText").html("Invalid First name! Only Alphabets are allowed.");
+                $("#registerErrorText").show();
+            }
+            else if(check_name(lname) == "false")
+            {
+                $("#registerErrorText").html("Invalid Last name! Only Alphabets are allowed");
+                $("#registerErrorText").show();
+            }
+            else if(mobile=="")
+            {
+                $("#registerErrorText").html("Enter Mobile number.");
+                $("#registerErrorText").show();
+            }
+            else if(check_inp(mobile)=="false")
+            {
+                $("#registerErrorText").html("Invalid Mobile number. Enter 10 digit mobile no.");
+                $("#registerErrorText").show();
+            }
+            
+            else if(check_space(mobile)=="false")
+            {
+                $("#registerErrorText").html("Invalid Mobile Number.");
+                $("#registerErrorText").show();
+            }
+
+            else if(mobile.length>10 || mobile.length < 10)
+            {
+                $("#registerErrorText").html("Enter valid 10 digit Mobile Number.");
+                $("#registerErrorText").show();
+            }
+            
+            else if(check_start_zero(mobile)=="true")
+            {
+                $("#registerErrorText").html("Starting digit of Mobile number can't be '0'.");
+                $("#registerErrorText").show();
+            }
+            else if(email_id=="")
+            {
+                $("#registerErrorText").html("Enter your Email id.");
+                $("#registerErrorText").show();
+            }
+            else if(check_email(email_id)=="false")
+            {
+                $("#registerErrorText").html("Invalid Email id! Enter your valid Email id.");
+                $("#registerErrorText").show();
+            } 
+            else if(password=="")
+            {
+                $("#registerErrorText").html("Enter your password (Max length 16 digits)");
+                $("#registerErrorText").show();
+            }
+            else if(cpassword=="")
+            {
+                $("#registerErrorText").html("Enter Confirm Password.");
+                $("#registerErrorText").show();
+            }
+            else if(password != cpassword)
+            {
+                $("#registerErrorText").html("Password mismatch.");
+            }
+            else if(password.length > 16 && password.length < 6)
+            {
+                $("#registerErrorText").html("Password length must be between 6 to 16 characters).");
+                $("#registerErrorText").show();
+            }
+            else if(vehicle_no == "")
+            {
+                $("#registerErrorText").html("Enter Vehicle Number");
+            }
+            else if(check_vehicle_number(vehicle_no) == 'false')
+            {
+                $("#registerErrorText").html("Enter Valid Vehicle Number");
+                $("#registerErrorText").show();
+            }
+            else
+            {
+                $.ajax({
+                    type: "POST",
+                    url: 'database/login_register.php',
+                    data: { 'type': 'register', 'fname': fname, 'lname': lname, 'mobile': mobile, 'email_id': email_id, 'password': password, 'vehicle_type': vehicle_type, 'vehicle_no': vehicle_no },
+                    success: function(response){
+                            
+                            //alert(response);
+                            if(response == "email_error")
+                            {
+                                $("#registerErrorText").html("Email id already in use!");
+                                $("#registerErrorText").show();
+                            }
+                            else if(response == "mobile_error")
+                            {
+                                $("#registerErrorText").html("Mobile number already in use!");
+                                $("#registerErrorText").show();
+                            }
+                            else 
+                            {
+                                alert(response);
+                                $("#register-box").modal('toggle');
+                                $("#register-form").reset();
+                                $("#registerErrorText").html("");
+                            }
+                    }
+                });
+
+                event.preventDefault();
+                return false;    
+            }
+               
+        });
+        /* END of registeration */
+
+        /* Login Form -- START */
+        $("#login-box").submit(function(event){
+
+            var email_id = $('#log_email_id').val();
+            var password = $('#log_password').val();
+
+            event.preventDefault();
+            $("#loginErrorText").html("");
+
+            if(email_id=="")
+            {
+                $("#loginErrorText").html("Enter your Email id.");
+            }
+            else if(check_email(email_id)=="false")
+            {
+                $("#loginErrorText").html("Invalid Email id! Enter your valid Email id.");
+            } 
+            else if(password=="")
+            {
+                $("#loginErrorText").html("Enter your password.");
+            }
+            else if(password.length <= 16 && password.length >= 6)
+            {
+                $("#loginErrorText").html("Password length must be between 6 to 16 characters).");
+            }
+            else
+            {
+                $.ajax({
+                    type: "POST",
+                    url: 'database/login_register.php',
+                    data: { 'type': 'login', 'email_id': email_id, 'password': password },
+                    success: function(response){
+                            
+                            //alert(response);
+                            if(response == "email_error")
+                            {
+                                $("#loginErrorText").html("This Email doesn't exist in our database!");
+                            }
+                            else if(response == "password_error")
+                            {
+                                $("#loginErrorText").html("Invalid password!");
+                            }
+                            else 
+                            {
+                                alert(response);
+                                $("#login-box").modal('toggle');
+                                $("#login-form").reset();
+                                $("#loginErrorText").html("");
+                            }
+                    }
+                });
+            }
+            return false;
+        });
     });
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

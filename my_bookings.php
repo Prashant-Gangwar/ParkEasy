@@ -1,11 +1,12 @@
 <?php include_once 'includes/header.php'; ?>
 
 <div class="text-center" style="margin: 10px;">
-	<h3 style="background-color: #C70D0D; color: white; padding-top: 5px; margin-top: 10px; padding-bottom: 5px; font-weight: bold; margin-bottom: 0px; border-radius: 4px;" > Hi Prashant! Welcome to Park Easy :)
-	</h3>
+	<h1 style="background-color: #C70D0D; color: white; padding-top: 5px; margin-top: 10px; padding-bottom: 5px; font-weight: bold; margin-bottom: 0px; border-radius: 4px;" > Hi Prashant! Welcome to ParkEasy :)
+	</h1>
+	<br>
 	<h3 class="text-center" style="color: orange; ">My Bookings</h3>
 
-	<div class="container-fluid col-lg-12" style="background-color: #4CAF50 ; color: white; border-radius: 4px; width: 100%; margin-top: 10px; ">
+	<div class="container-fluid col-lg-12" style="background-color: #31b0d5; color: white; border-radius: 4px; width: 100%; margin-top: 10px; ">
 		<h3 style="font-family: 'Montserratbold'">Your Current Booking</h3>
 
 		 <!-- Table for URL shortener history -->
@@ -30,7 +31,7 @@
 		  		<td class="text-left">10:00 AM</td>
 		  		<td class="text-left">Online</td>
 		  		<td class="text-left">12</td>
-		  		<td class="text-center"><button>Exit</button></td>
+		  		<td class="text-center"><button class="btn-primary">End</button></td>
 				    <?php 
 				      	/*	$res_url = qSelect("user_urls", "id, short_url, message, created_on, clicks, active");
 				      	$i=0;
@@ -52,11 +53,11 @@
 				    ?>
 		        </tbody>
 		  	</table>
-		  	<br>
 		</div>
+		<br>
 	</div>
 
-	<div class="container-fluid col-lg-12" style="background-color: #00A2B5; color: white; border-radius: 4px; width: 100%; margin-top: 20px;">
+	<div class="container-fluid col-lg-12" style="background-color: #1171a0; color: white; border-radius: 4px; width: 100%; margin-top: 20px;">
 		<h3 style="font-family: 'Montserratbold'">Your Recent Bookings</h3>
 	  	
 		 <!-- Table for URL shortener history -->
@@ -83,7 +84,7 @@
 		  		<td class="text-left">11:00 AM</td>
 		  		<td class="text-left">1233</td>
 		  		<td class="text-left">Online</td>
-		  		<td class="text-center">Delete</td>
+		  		<td class="text-center"><i class='fa fa-lg fa-2x fa-trash-o url_delete' aria-hidden='true' style='color: red' data-toggle='modal' data-target='#url-delete-modal'></i></td>
 				    <?php 
 				      	/*	$res_url = qSelect("user_urls", "id, short_url, message, created_on, clicks, active");
 				      	$i=0;
@@ -105,8 +106,8 @@
 				    ?>
 		        </tbody>
 		  	</table>
-		  	<br>
 		</div>
+		<br><button class="btn-danger btn-sm col-sm-3 col-lg-2 col-xs-12 pull-right">Delete All History <i class='fa fa-lg fa-2x fa-trash-o url_delete' aria-hidden='true' data-toggle='modal' data-target='#url-delete-modal'></i> </button><br><br>
 	</div>
 </div>
 &nbsp;

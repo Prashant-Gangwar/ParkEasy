@@ -31,7 +31,7 @@
 		  		<td class="text-left">10:00 AM</td>
 		  		<td class="text-left">Online</td>
 		  		<td class="text-left">12</td>
-		  		<td class="text-center"><button class="btn-primary">End</button></td>
+		  		<td class="text-center"><button class="btn btn-sm btn-primary">End</button></td>
 				    <?php 
 				      	/*	$res_url = qSelect("user_urls", "id, short_url, message, created_on, clicks, active");
 				      	$i=0;
@@ -73,7 +73,7 @@
 		   		        <th class="text-left" style="min-width: 100px;">Out (time)</th>
 				        <th class="text-left" style="min-width: 100px;">Payment</th>
 				        <th class="text-left" style="min-width: 100px;">Payment Mode</th>
-				        <th class="text-center" >Delete</th>
+				        <th class="text-center" hidden>Delete</th>
 				    </tr>
 		    	</thead>
 		  		<tbody>
@@ -84,7 +84,7 @@
 		  		<td class="text-left">11:00 AM</td>
 		  		<td class="text-left">1233</td>
 		  		<td class="text-left">Online</td>
-		  		<td class="text-center"><i class='fa fa-lg fa-2x fa-trash-o url_delete' aria-hidden='true' style='color: red' data-toggle='modal' data-target='#url-delete-modal'></i></td>
+		  		<td class="text-center" hidden><i class='fa fa-lg fa-2x fa-trash-o url_delete' aria-hidden='true' style='color: red' data-toggle='modal' data-target='#url-delete-modal'></i></td>
 				    <?php 
 				      	/*	$res_url = qSelect("user_urls", "id, short_url, message, created_on, clicks, active");
 				      	$i=0;

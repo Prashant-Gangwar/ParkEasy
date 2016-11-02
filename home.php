@@ -87,7 +87,7 @@
 /***********************************************************************************************************************************/
 
 			//info window content here for SN
-			var infoWindowContent_SN = '<div class="info_content" style="color: #01A185">' + '<h4>Sarojini Nagar</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 7</p><p>Charges : Rs 10/hr</p>' + '</div>';
+			var infoWindowContent_SN = '<div class="info_content" style="color: #01A185">' + '<h4>Sarojini Nagar</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 7</p><p>Charges : Rs 10/hr</p>' + '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_SN = new google.maps.InfoWindow({
@@ -98,7 +98,7 @@
 		        infoWindow_SN.open(map, marker_SN);
 		    });
 
-			var infoWindowContent_LN = '<div class="info_content">' + '<h4>Lajpat Nagar</h4>' + '<p>Total Parkings : 20</p><p>Available Parkings : 7</p><p>Charges : Rs 15/hr</p>' + '</div>';
+			var infoWindowContent_LN = '<div class="info_content">' + '<h4>Lajpat Nagar</h4>' + '<p>Total Parkings : 20</p><p>Available Parkings : 7</p><p>Charges : Rs 15/hr</p>' +  '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_LN = new google.maps.InfoWindow({
@@ -110,7 +110,7 @@
 		    });
 
 
-		    var infoWindowContent_NP = '<div class="info_content" >' + '<h4>Nehru Place</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 5</p><p>Charges : Rs 15/hr</p>' + '</div>';
+		    var infoWindowContent_NP = '<div class="info_content" >' + '<h4>Nehru Place</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 5</p><p>Charges : Rs 15/hr</p>' +  '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_NP = new google.maps.InfoWindow({
@@ -122,7 +122,7 @@
 		    });
 
 
-		    var infoWindowContent_CP = '<div class="info_content">' + '<h4>Cannaught Place</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 2</p><p>Charges : Rs 30/hr</p>' + '</div>';
+		    var infoWindowContent_CP = '<div class="info_content">' + '<h4>Cannaught Place</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 2</p><p>Charges : Rs 30/hr</p>' +   '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_CP = new google.maps.InfoWindow({
@@ -134,7 +134,7 @@
 		    });
 
 
-		    var infoWindowContent_HK = '<div class="info_content">' + '<h4>Hauz Khas</h4>' + '<p>Total Parkings : 20</p><p>Available Parkings : 6</p><p>Charges : Rs 20/hr</p>' + '</div>';
+		    var infoWindowContent_HK = '<div class="info_content">' + '<h4>Hauz Khas</h4>' + '<p>Total Parkings : 20</p><p>Available Parkings : 6</p><p>Charges : Rs 20/hr</p>' +  '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_HK = new google.maps.InfoWindow({
@@ -146,7 +146,7 @@
 		    });
 
 
-		    var infoWindowContent_LG = '<div class="info_content">' + '<h4>Lodhi Garden</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 8</p><p>Charges : Rs 10/hr</p>' + '</div>';
+		    var infoWindowContent_LG = '<div class="info_content">' + '<h4>Lodhi Garden</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 8</p><p>Charges : Rs 10/hr</p>' +  '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_LG = new google.maps.InfoWindow({
@@ -156,10 +156,86 @@
 			google.maps.event.addListener(marker_LG, 'click', function() {
 		        infoWindow_LG.open(map, marker_LG);
 		    });
-/*********************************************************************************************************************************/
+/**************************geolocation code*******************************************************************************************************/
 		    
-			 
+		var infoWindow_geo = new google.maps.InfoWindow({map: map});
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) 
+        {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow_geo.setPosition(pos);
+            infoWindow_geo.setContent('You are here.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow_geo, map.getCenter());
+          });
+        } 
+        else 
+        {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow_geo, map.getCenter());
+        }
+
+        var centerControlDiv = document.createElement('div');
+        var centerControl = new CenterControl(centerControlDiv, map);
+
+        centerControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
 	}
+
+	function handleLocationError(browserHasGeolocation, infoWindow, pos) 
+      	{
+        infoWindow_geo.setPosition(pos);
+        infoWindow_geo.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      	}
+/********************TO show available parkings***************************************************************************************/
+
+      var map;
+      var lodhi_garden = {lat: 28.5931 , lng: 77.2197};
+
+      function CenterControl(controlDiv, map) {
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Find Available Parkings';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlUI.addEventListener('click', function() {
+          map.setCenter(lodhi_garden);
+        });
+
+      }
+
+
+
 </script>
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE2XzJrnMFxxDSY6gLbouCxoIcyDuuPnU&callback=initMap">

@@ -1,7 +1,12 @@
 <?php 
 	
 	include_once 'includes/header.php';
-	error_reporting(0);
+	include_once 'database/db_connection.php';
+	
+	//$_SESSION["user_id"] = 12; 
+	$user_details = qSelectObject('users', 'fname, lname, email_id, vehicle_no, mobile_no, vehicle_type, account_created_on', array('user_id'=>$_SESSION['user_id'])); 
+	//echo $user_details->fname; 
+	//error_reporting(0);
  ?>
 
 
@@ -180,8 +185,10 @@
 			</h1>
 		</div>
 		<div class="col-lg-12" style="background-color: #fff; color: white; border-radius: 4px; opacity: 0.9;">
-			<div class="col-lg-push-2 col-lg-4 text-center" id="profile" >
-				<br><br>
+			<div class="col-lg-push-1 col-lg-2 text-center" id="profile" >
+				<div class="vertical-space-60"></div>
+				<div class="vertical-space-10"></div>
+
 					<div class="text-left">
 			       		<img src="images/<?php echo "car.png"/*$dp = qSelectObject('users', 'dp_name', array('user_id'=>$_SESSION['user_id'])); if($dp->dp_name) echo $dp->dp_name; else echo "Please Upload your image";*/ ?>" width="200" height="200" class="img-rounded" alt="Upload your Profile Pic" style="border: 2px solid black; margin:0; background-color: black; box-shadow: 0px 0px 30px #000; ">
 			      	</div>
@@ -190,79 +197,67 @@
 			      		<button type="button" class="btn btn-warning text-left" style="margin-top: 10px; " id="change_pic" data-toggle="modal" data-target='#pic-uploader-modal'>Change Profile Pic</button>
 				    </div>
 			</div>
-			<div class="col-lg-5 col-lg-push-1 profile_table" style="overflow: hidden; border-radius: 4px; border: 2px solid black; margin-top: 40px; background-color: #00A2B5; color: white; height: 250px; min-width: 200px; max-height: 500px; box-shadow: 0px 0px 30px #000;"><br>
-				<div class="col-lg-12" style="color: white; display: block;">
-					<ul style="list-style: none;"><h2><b><u>Profile Details</u></b></h2>
-						<li class="jusitfied">
-							Name : Prashant Gangwar<?php //echo $users->name; ?> 
-						</li>
-						<li class="justified">
-							Email id : prashantgangwar23@gmail.com<?php //echo $users->email; ?>
-						</li>
-						<li class="justified">
-							Contact No : 9213521280<?php //echo $users->mobile; ?>
-						</li>
-						<li class="justified">
-							Password : ******<?php //echo $users->password; ?>
-						</li>
-					</ul>
-				</div>
+
+<style type="text/css">
+	label{
+		color: black;
+		margin-left: 20px !important;
+	}
+</style>
+
+			<div class="col-lg-7 col-lg-push-2">
+			<h1 style="color: black"> Profile Details</h1>
+				<div class="form-horizontal" >
+		            <form class="form-horizontal" id="register-form" method="post" action="database/login_register.php" style="background-color: #00A2B5; box-shadow: 0px 0px 30px #000; border-radius: 4px; border: 2px solid black;">
+		            <br>
+		                <div class="form-group" style="padding-left: 10%;">
+		                    <label class="control-label">First Name : <?php echo $user_details->fname; ?></label>
+		                </div>
+
+		                <div class="form-group" style="padding-left: 10%;">
+		                    <label class="control-label">Last Name : <?php echo $user_details->lname; ?></label>
+		                </div>
+
+		                <div class="form-group" style="padding-left: 10%;">
+		                    <label class="control-label">Mobile : <?php echo $user_details->mobile_no; ?></label>
+		                </div>
+
+		                <div class="form-group" style="padding-left: 10%;">
+		                    <label class=" control-label">Email : <?php echo $user_details->email_id; ?></label>
+		                </div>
+
+		                <div class="form-group" style="padding-left: 10%;">
+		                    <label class="control-label">Vehicle Type : <?php echo $user_details->vehicle_type; ?></label>
+		                </div>
+
+		                <div class="form-group" style="padding-left: 10%;">
+		                    <label class="control-label">Vehicle Number : <?php echo $user_details->vehicle_no; ?></label>
+		                </div>
+
+		                <div class="form-group" style="padding-left: 10%;">
+		                    <label class="control-label">Account created on : <?php echo $user_details->account_created_on; ?></label>
+		                </div>
+
+		            </form>
+		    	</div>
+		    	<div class="vertical-space-60"></div>
 			</div>
 			<br>
 		</div>
-		<hr>
-	</div>
-
-
-	<div class="container-fluid col-lg-12" style="background-color: #00A2B5; color: white; border-radius: 4px; width: 100%; margin-top: 10px; overflow: auto;">
-		  <h3 style="font-family: 'Montserratbold'">Your Recent Bookings</h3>
-		  <br>
-
-		 <!-- Table for URL shortener history -->
-		<div id="url_tab" style="overflow: auto; ">
-			  	<table class="table table-striped text-center" id="url_table" style="border: 3px solid black; overflow: auto; margin: 0">
-			    	<thead>
-				      	<tr style="font-family: 'Montserratbold'">
-					        <th class="text-left" style="min-width: 20px; max-width: 100px;">S.No.</th>
-					        <th class="text-left" hidden>id</th>
-					        <th class="text-left" style="min-width: 150px;">Parking Name</th>
-					        <th class="text-left" style="min-width: 100px;">Date</th>
-					        <th class="text-left" style="min-width: 100px;">In (time)</th>
-			   		        <th class="text-left" style="min-width: 100px;">Out (time)</th>
-					        <th class="text-left" style="min-width: 100px;">Payment</th>
-					        <th class="text-left" style="min-width: 100px;">Payment Mode</th>
-					        <th class="text-center" >Edit</th>
-					        <th class="text-center" >Delete</th>
-					    </tr>
-			    	</thead>
-			  		<tbody>
-					    <?php 
-					      	/*	$res_url = qSelect("user_urls", "id, short_url, message, created_on, clicks, active");
-					      	$i=0;
-					    	while($row_url = $res_url->fetch_assoc()) 
-					      	{ 	
-					      		$i++;
-                			    echo "<tr id='url_" .$row_url['id'] . "'>";
-							    	echo "<td class='text-left' style='padding-left:20px'>" . $i . "</td>";
-							    	echo "<td class='text-left' hidden>" . $row_url['id'] . "</td>";
-							        echo "<td class='text-left'><b><a href='http://www.cut-it.netne.net/prashant/{$row_url['short_url']}' >cut.netnet.net/" . $row_url['short_url'] . "<a></b></td>";
-							        echo "<td class='text-left' id='url_msg_" . $row_url['id'] . "'>" . $row_url['message'] . "</td>";
-							        echo "<td class='text-left'>" . date("d-m-Y", strtotime($row_url['created_on'])); "</td>";
-							        echo "<td>" . $row_url['clicks'] . "</td>";
-							        echo "<td id='url_status_" . $row_url['id'] . "'>"; if ($row_url['active'] ==1){ echo "Active"; } else { echo "Not Active"; } "</td>";
-							        echo "<td><center><i class='fa fa-2x fa-pencil-square-o url_edit' aria-hidden='true' style='color:green' data-toggle='modal' data-target='#url-modal'></i></center></td>";
-							        echo "<td><i class='fa fa-lg fa-2x fa-trash-o url_delete' aria-hidden='true' style='color: red' data-toggle='modal' data-target='#url-delete-modal'></i></td>";
-							    echo "</tr>";
-					  		}*/
-					    ?>
-			        </tbody>
-			  	</table>
-		</div>
-		<br><br>
 	</div>
 </div>
-<hr style="margin:0;">
-<br>
+
+<div class="vertical-space-10"></div>
+
+<div class="container" style="margin-bottom: 10px; margin-top: 10px;">
+	<a href="my_bookings.php"><button class="btn btn-sm btn-danger">Click Here</button></a> to see your booking history
+</div>
+<div class="container">
+	<a href="settings.php"><button class="btn btn-sm btn-warning">Click Here</button></a> to update your profile
+</div>
+<div class="vertical-space-60"></div>
+
+<hr style="margin-bottom:0;">
 <?php include_once 'includes/footer.php'; ?>
 
 <style type="text/css">

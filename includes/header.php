@@ -1,4 +1,6 @@
-<?php?>
+<?php
+session_start();
+?>
 
 <html>
 <head>
@@ -33,6 +35,7 @@
 	      <li><a href="contact_us.php"><span class="glyphicon glyphicon-phone" ></span> Contact Us</a></li> 
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right" style="padding-left: 0; margin-top: 0;">
+            <li id="qr_code"><a href="#qr_code_modal"><span><i class="fa fa-qrcode" aria-hidden="true"></i> QR Code</span></a></li>
 	    	<li id="my_bookings"><a href="my_bookings.php"><span class="glyphicon glyphicon-calendar" ></span> My Bookings</a></li>
 	    	<li id="my_bookings"><a href="profile.php"><span class="glyphicon glyphicon-briefcase" ></span> Account</a></li>
 	      	<li id="register-button"><a href="#register-box"><span class="glyphicon glyphicon-user" ></span> Sign Up</a></li>
@@ -42,6 +45,7 @@
 		<hr style="margin:0">
 	</nav>
 </div>
+
 <!-- Login Box -->
 <div class="modal fade" id="login-box" role="dialog">
     <div class="modal-dialog" style="border-radius: 10px;border: 4px solid #00A2B5;">
@@ -123,6 +127,7 @@
         </div>
     </div>
 </div>
+
 <!-- Forgot Password Box -->
 <div class="modal fade" id="forgot-password" role="dialog">
     <div class="modal-dialog" style="border-radius: 10px;border: 4px solid #00A2B5;">
@@ -266,9 +271,44 @@
     </div>
 </div>
 
+<!-- Delete Link Box -->
+<div class="modal fade" id="qr_code_modal" role="dialog">
+    <div class="modal-dialog" style="border-radius: 10px;border: 4px solid #00A2B5;">
+        <div class="modal-content" style="text-align: center;color:#337ab7;">
+            <div class="modal-body">
+
+                <div class="row">
+                    <h1 class="main-heading" style="text-decoration: underline">QR Code</h1>
+                </div>
+
+                    <form class="form-horizontal" id="qr_code_form" method="post" action="edit_delete.php">
+                    <br>
+                        <div >
+                            <?php $user_id = $_SESSION["user_id"]; echo "<img src='includes/qr_img/php/qr_img.php?d=http://www.parkeasy.site88.net/qrcode.php?=$user_id' width=\"100%\" height=\"100%\" alt=\"QR Code Image\" style=\" border: 2px solid orange; max-height: 250px; max-width: 250px;\">"."<p><small>"."(Use this QR Code during entry and exit)"."</small></p>";
+                            ?>
+                        </div>
+                    </form>
+                </div>
+            
+            <div class="modal-footer" style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+                <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal">
+                    <i class="fa fa-times" aria-hidden="true" style="font-size: 20px; padding-right: 3px;"></i> Close
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <script type="text/javascript">
     
     $(function() {
+
+        //To show QR code 
+        $("#qr_code").click(function(){
+            $("#qr_code_modal").modal("show");;
+        });
 
         //Login Modal Display from Login Button
         $("#login-button").click(function() {
@@ -403,7 +443,7 @@
                 $("#registerErrorText").html("Password length must be between 6 to 16 characters).");
                 $("#registerErrorText").show();
             }
-            else if(vehicle_no == "")
+           /* else if(vehicle_no == "")
             {
                 $("#registerErrorText").html("Enter Vehicle Number");
             }
@@ -411,7 +451,7 @@
             {
                 $("#registerErrorText").html("Enter Valid Vehicle Number");
                 $("#registerErrorText").show();
-            }
+            }*/
             else
             {
                 $.ajax({

@@ -21,6 +21,7 @@ session_start();
 	<!-- FONT AWESOME LINKS -->
 	<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
+    <link rel="icon" type="image/png" href="images/favicon.png" />
 </head>
 <body>
 <div>
@@ -30,16 +31,27 @@ session_start();
 	      <a class="navbar-brand" href="index.php" style="color: orange"><i class="fa fa-car" aria-hidden="true"></i> Park Easy</a>
 	    </div>
 	    <ul class="nav navbar-nav" style="margin-bottom:0px;">
-	      <li class="active"><a href="home.php"><span class="glyphicon glyphicon-home" ></span> Home</a></li>
+	      <?php if(isset($_SESSION['user_id']))
+            {
+                echo '<li class="active"><a href="home.php"><span class="glyphicon glyphicon-home" ></span> Home | Parkings</a></li>';
+            } ?>
 	      <li><a href="about_us.php"><i class="fa fa-users" aria-hidden="true"></i> About Us</a></li>
-	      <li><a href="contact_us.php"><span class="glyphicon glyphicon-phone" ></span> Contact Us</a></li> 
+	      <li style="display: none"><a href="contact_us.php"><span class="glyphicon glyphicon-phone" ></span> Contact Us</a></li> 
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right" style="padding-left: 0; margin-top: 0;">
-            <li id="qr_code"><a href="#qr_code_modal"><span><i class="fa fa-qrcode" aria-hidden="true"></i> QR Code</span></a></li>
-	    	<li id="my_bookings"><a href="my_bookings.php"><span class="glyphicon glyphicon-calendar" ></span> My Bookings</a></li>
-	    	<li id="my_bookings"><a href="profile.php"><span class="glyphicon glyphicon-briefcase" ></span> Account</a></li>
-	      	<li id="register-button"><a href="#register-box"><span class="glyphicon glyphicon-user" ></span> Sign Up</a></li>
-	      	<li id="login-button"><a href="#login-box"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+	    	<?php if(isset($_SESSION['user_id']))
+                    {
+                        echo '<li id="qr_code"><a href="#qr_code_modal"><span><i class="fa fa-qrcode" aria-hidden="true"></i> QR Code</span></a></li>
+                              <li id="my_bookings"><a href="my_bookings.php"><span class="glyphicon glyphicon-calendar" ></span> My Bookings</a></li>
+	    	                  <li id="my_bookings"><a href="profile.php"><span class="glyphicon glyphicon-briefcase" ></span> Account</a></li>
+                              <li id="sign_out"><a href="sign_out.php"><span><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a></li>';
+                    }
+                  else
+                    {
+                        echo '<li id="register-button"><a href="#register-box"><span class="glyphicon glyphicon-user" ></span> Sign Up</a></li>
+                              <li id="login-button"><a href="#login-box"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>';  
+                    }
+	      	?>      
 	    </ul>
 	  </div>
 		<hr style="margin:0">
@@ -438,7 +450,7 @@ session_start();
             {
                 $("#registerErrorText").html("Password mismatch.");
             }
-            else if(password.length > 16 && password.length < 6)
+            else if(password.length < 16 && password.length > 6)
             {
                 $("#registerErrorText").html("Password length must be between 6 to 16 characters).");
                 $("#registerErrorText").show();
@@ -488,60 +500,7 @@ session_start();
         });
         /* END of registeration */
 
-        /* Login Form -- START */
-        $("#login-box").submit(function(event){
-
-            var email_id = $('#log_email_id').val();
-            var password = $('#log_password').val();
-
-            event.preventDefault();
-            $("#loginErrorText").html("");
-
-            if(email_id=="")
-            {
-                $("#loginErrorText").html("Enter your Email id.");
-            }
-            else if(check_email(email_id)=="false")
-            {
-                $("#loginErrorText").html("Invalid Email id! Enter your valid Email id.");
-            } 
-            else if(password=="")
-            {
-                $("#loginErrorText").html("Enter your password.");
-            }
-            else if(password.length <= 16 && password.length >= 6)
-            {
-                $("#loginErrorText").html("Password length must be between 6 to 16 characters).");
-            }
-            else
-            {
-                $.ajax({
-                    type: "POST",
-                    url: 'database/login_register.php',
-                    data: { 'type': 'login', 'email_id': email_id, 'password': password },
-                    success: function(response){
-                            
-                            //alert(response);
-                            if(response == "email_error")
-                            {
-                                $("#loginErrorText").html("This Email doesn't exist in our database!");
-                            }
-                            else if(response == "password_error")
-                            {
-                                $("#loginErrorText").html("Invalid password!");
-                            }
-                            else 
-                            {
-                                alert(response);
-                                $("#login-box").modal('toggle');
-                                $("#login-form").reset();
-                                $("#loginErrorText").html("");
-                            }
-                    }
-                });
-            }
-            return false;
-        });
+        
     });
 
 </script>

@@ -1,4 +1,6 @@
-<?php include_once "includes/header.php" ?>
+<?php include_once "includes/header.php";
+	error_reporting(0);
+?>
 
 	<div style="">
 		<!-- Maps are loaded here-->
@@ -8,24 +10,32 @@
 		<!-- Right side profile details are loaded here-->
 		<div class="col-lg-3" style="margin-top: 30px; background-color: orange; margin-left: 0px; height: 80%">
 			<div style=" padding-top: 10px;">
-				<h1 class="text-center" style="background-color: #C70D0D; color: white; padding-top: 12px; margin-top: 5px; padding-bottom: 11px; font-weight: bold;  margin-bottom: 10px; border-radius: 4px;" > Hi Prashant! <br>Welcome <br>to <br>Park Easy :)</h1>
+				<h1 class="text-center" style="background-color: #C70D0D; color: white; padding-top: 12px; margin-top: 5px; padding-bottom: 11px; font-weight: bold;  margin-bottom: 10px; border-radius: 4px;" > Hi <?php echo $_SESSION['fname']; ?>! <br>Welcome <br>to <br>Park Easy :)</h1>
 			</div>
 			<div>
 				<hr>
-					<h4>Click on the parking locations to check their details</h4>
+				<h4>Click on the parking locations to check their details</h4>
 				<hr>
 				<h4>Your Details are: <br></h4>
-				<label>Name: Prashant</label><br>
-				<label>Email: Prashantgangwar23@gmail.com</label><br>
-				<label>Vehicle No: MP 09 AB 1234</label><br>
-				<label>Mobile: 9876543210</label><br>
+				<label>Name: <?php echo $_SESSION['fname']." ".$_SESSION['lname']; ?></label><br>
+				<label>Email: <?php echo $_SESSION['email_id']; ?></label><br>
+				<label>Vehicle Type: <?php echo $_SESSION['vehicle_type']; ?></label><br>
+				<label>Vehicle No: <?php echo $_SESSION['vehicle_no']; ?></label><br>
+				<label>Mobile: <?php echo $_SESSION['mobile_no']; ?></label><br>
 			</div>
 		</div>
 	</div>
 </div>
 <?php include_once "includes/footer.php" ?>
 
+
 <script>
+	
+	$(function() {
+		$("#login-form").reset();
+    	$("#loginErrorText").html("");
+    });
+
 	function initMap()
 	{
 		
@@ -87,7 +97,7 @@
 /***********************************************************************************************************************************/
 
 			//info window content here for SN
-			var infoWindowContent_SN = '<div class="info_content" style="color: #01A185">' + '<h4>Sarojini Nagar</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 7</p><p>Charges : Rs 10/hr</p>' + '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
+			var infoWindowContent_SN = '<div class="info_content" style="color: #01A185">' + '<h4>Sarojini Nagar</h4>' + '<p>Total Parkings : 19</p><p>Available Parkings : 18</p><p>Charges : Rs 10/hr</p>' + '<a href="parking.php?location=SN"><button class="btn btn-sm btn-primary col-lg-12" id="btn_SN_book">Show Details</button></a>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_SN = new google.maps.InfoWindow({
@@ -98,7 +108,7 @@
 		        infoWindow_SN.open(map, marker_SN);
 		    });
 
-			var infoWindowContent_LN = '<div class="info_content">' + '<h4>Lajpat Nagar</h4>' + '<p>Total Parkings : 20</p><p>Available Parkings : 7</p><p>Charges : Rs 15/hr</p>' +  '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
+			var infoWindowContent_LN = '<div class="info_content">' + '<h4>Lajpat Nagar</h4>' + '<p>Total Parkings : 20</p><p>Available Parkings : 7</p><p>Charges : Rs 15/hr</p>' +  '<a href="parking.php?location=LN"><button class="btn btn-sm btn-primary col-lg-12" id="btn_LN_book">Show Details</button></a>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_LN = new google.maps.InfoWindow({
@@ -110,7 +120,7 @@
 		    });
 
 
-		    var infoWindowContent_NP = '<div class="info_content" >' + '<h4>Nehru Place</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 5</p><p>Charges : Rs 15/hr</p>' +  '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
+		    var infoWindowContent_NP = '<div class="info_content" >' + '<h4>Nehru Place</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 5</p><p>Charges : Rs 15/hr</p>' +  '<a href="parking.php?location=NP"><button class="btn btn-sm btn-primary col-lg-12" id="btn_NP_book">Show Details</button></a>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_NP = new google.maps.InfoWindow({
@@ -122,7 +132,7 @@
 		    });
 
 
-		    var infoWindowContent_CP = '<div class="info_content">' + '<h4>Cannaught Place</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 2</p><p>Charges : Rs 30/hr</p>' +   '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
+		    var infoWindowContent_CP = '<div class="info_content">' + '<h4>Cannaught Place</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 2</p><p>Charges : Rs 30/hr</p>' +   '<a href="parking.php?location=CP"><button class="btn btn-sm btn-primary col-lg-12" id="btn_CP_book">Show Details</button></a>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_CP = new google.maps.InfoWindow({
@@ -134,7 +144,7 @@
 		    });
 
 
-		    var infoWindowContent_HK = '<div class="info_content">' + '<h4>Hauz Khas</h4>' + '<p>Total Parkings : 20</p><p>Available Parkings : 6</p><p>Charges : Rs 20/hr</p>' +  '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
+		    var infoWindowContent_HK = '<div class="info_content">' + '<h4>Hauz Khas</h4>' + '<p>Total Parkings : 20</p><p>Available Parkings : 6</p><p>Charges : Rs 20/hr</p>' +  '<a href="parking.php?location=HK"><button class="btn btn-sm btn-primary col-lg-12" id="btn_HK_book">Show Details</button></a>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_HK = new google.maps.InfoWindow({
@@ -146,7 +156,7 @@
 		    });
 
 
-		    var infoWindowContent_LG = '<div class="info_content">' + '<h4>Lodhi Garden</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 8</p><p>Charges : Rs 10/hr</p>' +  '<button class="btn btn-sm btn-primary col-lg-12">Book Parking</button>' + '</div>';
+		    var infoWindowContent_LG = '<div class="info_content">' + '<h4>Lodhi Garden</h4>' + '<p>Total Parkings : 15</p><p>Available Parkings : 8</p><p>Charges : Rs 10/hr</p>' +  '<a href="parking.php?location=LG"><button class="btn btn-sm btn-primary col-lg-12" id="btn_LG_book">Show Details</button></a>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_LG = new google.maps.InfoWindow({
@@ -224,7 +234,7 @@
         controlText.style.lineHeight = '38px';
         controlText.style.paddingLeft = '5px';
         controlText.style.paddingRight = '5px';
-        controlText.innerHTML = 'Find Available Parkings';
+        controlText.innerHTML = 'Find Parking Locations';
         controlUI.appendChild(controlText);
 
         // Setup the click event listeners: simply set the map to Chicago.
@@ -240,5 +250,4 @@
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE2XzJrnMFxxDSY6gLbouCxoIcyDuuPnU&callback=initMap">
 </script>
-
 

@@ -65,7 +65,7 @@
 	else if($type == 'login')
 	{	
 		$user_id = $_SESSION["user_id"];
-		$users = qSelectObject('users',"user_id, email_id, password", array('email_id'=>$email_id));
+		$users = qSelectObject('users',"user_id, email_id, password, fname, lname, mobile_no, vehicle_type, vehicle_no", array('email_id'=>$email_id));
 
 		//$check_email = qExecute("SELECT user_id, email_id, password FROM users WHERE email_id = '$email_id'");
 		if($users->email_id == $email_id)
@@ -74,7 +74,15 @@
 			if($users->password == $password)
 			{
 				echo "Login Successful"."\n";
-				echo $_SESSION['user_id'] = $users->user_id;
+				$_SESSION['user_id'] = $users->user_id;
+				$_SESSION['email_id'] = $users->email_id;
+				$_SESSION['fname'] = $users->fname;
+				$_SESSION['lname'] = $users->lname ;
+				$_SESSION['mobile_no'] = $users->mobile_no;
+				$_SESSION['vehicle_no'] = $users->vehicle_no;
+				$_SESSION['vehicle_type'] = $users->vehicle_type;
+
+				//header('Location: home.php');
 				return 0;
 			}
 			else

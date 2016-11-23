@@ -10,9 +10,15 @@
 		<div>
 			<h2 id="welcome_bottom_line" >An efficient parking system!</h2>
 		</div>
-		<div>
-			<button type="button" class="btn btn-info" data-toggle="modal" data-target='#register-box' >SIGN UP NOW</button>
-		</div>
+		<?php if(isset($_SESSION['user_id']))
+            {}
+            else
+            {
+            	echo '<div>
+				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#register-box" >SIGN UP NOW</button>
+				</div>';
+			}
+		?>
 		<br>
 	</div>
 	<hr style="margin:0">
@@ -63,6 +69,66 @@
 
 	<script>
 
+	/* ------- JS for Sign in Page ---------------------------------------------------------------*/
+	/* Login Form -- START */
+        $("#login-box").submit(function(event){
+
+            var email_id = $('#log_email_id').val();
+            var password = $('#log_password').val();
+
+            event.preventDefault();
+            $("#loginErrorText").html("");
+
+            if(email_id=="")
+            {
+                $("#loginErrorText").html("Enter your Email id.");
+            }
+            else if(check_email(email_id)=="false")
+            {
+                $("#loginErrorText").html("Invalid Email id! Enter your valid Email id.");
+            } 
+            else if(password=="")
+            {
+                $("#loginErrorText").html("Enter your password.");
+            }
+            else if(password.length <= 16 && password.length >= 6)
+            {
+                $("#loginErrorText").html("Password length must be between 6 to 16 characters).");
+            }
+            else
+            {
+                $.ajax({
+                    type: "POST",
+                    url: 'database/login_register.php',
+                    data: { 'type': 'login', 'email_id': email_id, 'password': password },
+                    success: function(response){
+                            
+                            //alert(response);
+                        if(response == "email_error")
+                        {
+                            $("#loginErrorText").html("This Email doesn't exist in our database!");
+                        }
+                        else if(response == "password_error")
+                        {
+                            $("#loginErrorText").html("Invalid password!");
+                        }
+                        else 
+                        {
+                            alert(response);
+                            $("#login-box").modal('toggle');
+                            $("#login-form").reset();
+                            $("#loginErrorText").html("");
+                            //location.reload();
+                            //window.location.href = 'home.php';
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+
+        /*----------------------- JS for GOOGLE MAPs API Loading ---------------------------------------------------------------------*/
 		function initMap()
 		{
 			var sarojini_nagar = {lat: 28.5757 , lng: 77.1990};
@@ -123,7 +189,7 @@
 /***********************************************************************************************************************************/
 
 			//info window content here for SN
-			var infoWindowContent_SN = '<div class="info_content">' + '<h4>Sarojini Nagar</h4>' + '<p>Total Space - 15</p>' + '</div>';
+			var infoWindowContent_SN = '<div class="info_content">' + '<h4>Sarojini Nagar</h4>' + '<p>Total Space - 19</p>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_SN = new google.maps.InfoWindow({
@@ -134,7 +200,7 @@
 		        infoWindow_SN.open(map, marker_SN);
 		    });
 
-			var infoWindowContent_LN = '<div class="info_content">' + '<h4>Lajpat Nagar</h4>' + '<p>Total Space - 15</p>' + '</div>';
+			var infoWindowContent_LN = '<div class="info_content">' + '<h4>Lajpat Nagar</h4>' + '<p>Total Space - 19</p>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_LN = new google.maps.InfoWindow({
@@ -146,7 +212,7 @@
 		    });
 
 
-		    var infoWindowContent_NP = '<div class="info_content">' + '<h4>Nehru Place</h4>' + '<p>Total Space - 15</p>' + '</div>';
+		    var infoWindowContent_NP = '<div class="info_content">' + '<h4>Nehru Place</h4>' + '<p>Total Space - 19</p>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_NP = new google.maps.InfoWindow({
@@ -158,7 +224,7 @@
 		    });
 
 
-		    var infoWindowContent_CP = '<div class="info_content">' + '<h4>Cannaught Place</h4>' + '<p>Total Space - 15</p>' + '</div>';
+		    var infoWindowContent_CP = '<div class="info_content">' + '<h4>Cannaught Place</h4>' + '<p>Total Space - 19</p>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_CP = new google.maps.InfoWindow({
@@ -170,7 +236,7 @@
 		    });
 
 
-		    var infoWindowContent_HK = '<div class="info_content">' + '<h4>Hauz Khas</h4>' + '<p>Total Space - 15</p>' + '</div>';
+		    var infoWindowContent_HK = '<div class="info_content">' + '<h4>Hauz Khas</h4>' + '<p>Total Space - 19</p>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_HK = new google.maps.InfoWindow({
@@ -182,7 +248,7 @@
 		    });
 
 
-		    var infoWindowContent_LG = '<div class="info_content">' + '<h4>Lodhi Garden</h4>' + '<p>Total Space - 15</p>' + '</div>';
+		    var infoWindowContent_LG = '<div class="info_content">' + '<h4>Lodhi Garden</h4>' + '<p>Total Space - 19</p>' + '</div>';
 
 		    // Initialise the inforWindow for SN
 		    var infoWindow_LG = new google.maps.InfoWindow({

@@ -189,10 +189,10 @@
 				<div class="vertical-space-60"></div>
 				<div class="vertical-space-10"></div>
 
-					<div class="text-left">
+					<div class="text-left" hidden>
 			       		<img src="images/<?php echo "car.png"/*$dp = qSelectObject('users', 'dp_name', array('user_id'=>$_SESSION['user_id'])); if($dp->dp_name) echo $dp->dp_name; else echo "Please Upload your image";*/ ?>" width="200" height="200" class="img-rounded" alt="Upload your Profile Pic" style="border: 2px solid black; margin:0; background-color: black; box-shadow: 0px 0px 30px #000; ">
 			      	</div>
-			      	<div class="form-group text-left" style="margin-bottom: 40px; margin-left: 20px;">
+			      	<div class="form-group text-left" style="margin-bottom: 40px; margin-left: 20px;" hidden>
 
 			      		<button type="button" class="btn btn-warning text-left" style="margin-top: 10px; " id="change_pic" data-toggle="modal" data-target='#pic-uploader-modal'>Change Profile Pic</button>
 				    </div>
@@ -205,7 +205,7 @@
 	}
 </style>
 
-			<div class="col-lg-7 col-lg-push-2">
+			<div class="col-lg-8">
 			<h1 style="color: black"> Profile Details</h1>
 				<div class="form-horizontal" >
 		            <form class="form-horizontal" id="register-form" method="post" action="database/login_register.php" style="background-color: #00A2B5; box-shadow: 0px 0px 30px #000; border-radius: 4px; border: 2px solid black;">
@@ -249,10 +249,10 @@
 
 <div class="vertical-space-10"></div>
 
-<div class="container" style="margin-bottom: 10px; margin-top: 10px;">
+<div class="container" style="padding-left: 100px; margin-bottom: 10px; margin-top: 10px;">
 	<a href="my_bookings.php"><button class="btn btn-sm btn-danger">Click Here</button></a> to see your booking history
 </div>
-<div class="container">
+<div class="container" hidden>
 	<a href="settings.php"><button class="btn btn-sm btn-warning">Click Here</button></a> to update your profile
 </div>
 <div class="vertical-space-60"></div>
